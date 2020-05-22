@@ -49,7 +49,7 @@ function changeBackground(v){
   console.log(v);
   body.style.backgroundColor = `rgb(${v}, ${v}, ${v})`;
   body.style.color = `rgb(${f}, ${f}, ${f})`;
-  document.getElementById('output').innerHTML = `Contrast 1: ${(1 / con).toFixed(0)}<br />BG #${fullColorHex(v,v,v)} <br/> FG #${fullColorHex(f,f,f)}`
+  document.getElementById('output').innerHTML = `Contrast 1: ${(1 / con).toFixed(0)}`
 }
 
 var rgbToHex = function (rgb) {
