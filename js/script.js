@@ -5,7 +5,6 @@ let lightThreshold = 160; //relative luminance of the lighter color
 let darkThreshold = 71; //relative luminance of the darker color
 let output = document.getElementById('output');
 let slider = document.getElementById('color');
-let contrast;
 let main = document.getElementsByClassName('main')[0];
 
 // from http://www.w3.org/TR/WCAG20/#relativeluminancedef
@@ -24,47 +23,6 @@ function relativeLuminance(R8bit, G8bit, B8bit) {
 
     return L;
 }
-
-function splitRGB(color) {
-  var rgb = color.match(/\d+/g);
-  var output = [];
-  for(var i in rgb) {
-    //console.log(rgb[i]);
-    output.push(rgb[i]);
-  }
-  return output;
-}
-
-var color = bgColor.match(/\d+/g);
-
-function getContrast(l1, l2) {
-  var l1con = l1 + 0.05;
-  var l2con = l2 + 0.05;
-  let con;
-
-  //always get a number between 0 and 1
-  if(l1con > l2con){
-    con = l2con / l1con;
-  } else {
-    con = l1con / l2con;
-  }
-
-  return con;
-}
-
-//l1 = background
-//l2 = foreground
-/*
-Start with l1.  Run as long as l1 is greater than l2, validating this with each iteration.  Change the formula when l1 becomes less that l2.
-
-
-
-
-*/
-
-slider.addEventListener('change', function(){
-  console.log(slider.value);
-});
 
 function changeBackground(v){
   v = Number(v);
@@ -108,13 +66,6 @@ var fullColorHex = function(r,g,b) {
   var blue = rgbToHex(b);
   return red+green+blue;
 };
-
-//0.05 / 1.05 = 0.0476
-//? / 1.05 = 0.14
-//0.05 / ? = 0.14
-
-//console.log(reverseCalc(relativeLuminance(splitRGB(bgColor)[0], splitRGB(bgColor)[1], splitRGB(bgColor)[2])));
-//
 
 function centerMain(){
   main.style.left = (window.innerWidth / 2) - (main.offsetWidth / 2) + 'px';
